@@ -1,0 +1,9 @@
+.container {
+  height: 500vh;
+}
+
+.card {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
+}
