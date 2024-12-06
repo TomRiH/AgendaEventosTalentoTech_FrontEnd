@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../../services/service.service';
 import { Category } from '../../interfaces/interface';
+import { SwalService } from '../../services/swal.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -15,7 +16,10 @@ export class CategoriaComponent implements OnInit {
   isLoading: boolean = true;
   modalEditar: boolean = false;
 
-  constructor(private categoryService: ServiceService) {}
+  constructor(
+    private categoryService: ServiceService,
+    private swal: SwalService
+  ) {}
 
   ngOnInit(): void {
    this.obtenerCategorias();
@@ -31,6 +35,7 @@ export class CategoriaComponent implements OnInit {
       error: (err) => {
         console.error('Error al obtener las categorías:', err);
         this.isLoading = false;
+        this.swal.error('Error', 'Hubo un error al obtener las categorías');
       },
     });
   }
@@ -44,11 +49,11 @@ export class CategoriaComponent implements OnInit {
           form.resetForm();
           this.closeModal();
           console.log('Categoría creada exitosamente:', nuevaCategoria);
-          alert('Categoría creada con éxito');
+          this.swal.success('Éxito', 'Categoría creada con éxito')
         },
         error: (err) => {
           console.error('Error al crear la categoría:', err);
-          alert('Hubo un error al crear la categoría');
+          this.swal.error('Error', 'Hubo un error al crear la categoría');
         },
       });
     }
@@ -67,32 +72,37 @@ export class CategoriaComponent implements OnInit {
           }
           this.closeModal();
           console.log('Categoría editada exitosamente:', data);
-          alert('Categoría editada con éxito');
+          this.swal.success('Éxito', 'Categoría editada con éxito');
         },
         error: (err) => {
           console.error('Error al editar la categoría:', err);
-          alert('Hubo un error al editar la categoría');
+          this.swal.error('Error', 'Hubo un error al editar la categoría');
         },
       });
     }
   }
 
   deleteCategoria(id: number): void {
-    if (confirm(`¿Estás seguro de que deseas eliminar la categoria con el id ${id}?`)) {
-
-       this.categoryService.borrarCategoria(id).subscribe({
-        next: () => {
-          this.categorias = this.categorias.filter((cat) => cat.id !== id);
-          alert('Categoria eliminada con éxito');
-          console.log('Categoría eliminada exitosamente');
-        },
-        error: (err) => {
-          alert('Hubo un error al eliminar la categoria');
-          console.error('Error al eliminar la categoría:', err);
-        },
-      });
-    }
-   }
+    this.swal
+      .confirm(
+        '¿Estás seguro?',
+        `¿Deseas eliminar la categoria con el id ${id}? No podrás revertir esta acción`
+      )
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.categoryService.borrarCategoria(id).subscribe({
+            next: () => {
+              this.categorias = this.categorias.filter((cat) => cat.id !== id);
+              this.swal.success('Eliminado', 'Categoria eliminada con éxito');
+            },
+            error: (err) => {
+              console.error('Error al eliminar la categoría:', err);
+              this.swal.error('Error', 'Hubo un error al eliminar la categoria');
+            },
+          });
+        }
+    });
+  }
 
   openModal(categoria?: Category): void {
     if (categoria) {

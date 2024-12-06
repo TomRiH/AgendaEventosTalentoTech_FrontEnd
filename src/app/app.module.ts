@@ -6,22 +6,27 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
-import { EventoComponent } from './components/evento/evento.component';
 import { EmprendimientoComponent } from './components/emprendimiento/emprendimiento.component';
+import { EventoComponent } from './components/evento/evento.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
+    LoginComponent,
     HeaderComponent,
+    FooterComponent,
     UsuarioComponent,
-    CategoriaComponent,
-    EventoComponent,
     EmprendimientoComponent,
+    EventoComponent,
+    CategoriaComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
