@@ -187,16 +187,6 @@ export class EmprendimientoComponent implements OnInit{
       },
     });
 
-    // this.emprendimientoUsuario.id_emprendimiento = id;
-    //   this.emprendimientoUsuario.id_usuario = this.selectedEmprendimiento.id_usuario;
-    //   this.service.asignarUsuarioEmprendimiento(this.emprendimientoUsuario).subscribe({
-    //     next: (data) => {
-    //       console.log('asignacion del emprendimiento al usuario creado exitosamente:', data);
-    //     },
-    //     error: (err) => {
-    //       console.error('Error en la asignacion del emprendimiento al usuario:', err);
-    //     },
-    // });
   }
 
   asignarEmprendimientoEvento(id: number): void {
@@ -218,16 +208,6 @@ export class EmprendimientoComponent implements OnInit{
       },
     });
 
-    // this.emprendimientoEvento.id_emprendimiento = id;
-    // this.emprendimientoEvento.id_evento = this.selectedEmprendimiento.id_evento;
-    // this.service.asignarEmprendimientoEvento(this.emprendimientoEvento).subscribe({
-    //   next: (data) => {
-    //     console.log('asignacion del emprendimiento al evento creado exitosamente:', data);
-    //   },
-    //   error: (err) => {
-    //     console.error('Error en la asignacion del emprendimiento al evento:', err);
-    //   },
-    // });
   }
 
   consultarEmprendimiento(id: number): void {

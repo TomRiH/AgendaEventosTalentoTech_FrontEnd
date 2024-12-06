@@ -2,7 +2,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
         aria-label="Offcanvas navbar large">
         <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/">
+            <a class="navbar-brand" routerLink="/usuarios">
                 Proyecto Eventos
             </a>
             <button class="navbar-toggler"
@@ -32,7 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link active"
                                 aria-current="page"
-                                routerLink="/"
+                                routerLink="/usuarios"
                                 routerLinkActive="active"
                                 data-bs-dismiss="offcanvas"
                                 aria-label="Close">
@@ -64,6 +64,16 @@
                                 data-bs-dismiss="offcanvas"
                                 aria-label="Close">
                                 Categorías
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                routerLink="/"
+                                routerLinkActive="active"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close"
+                                (click)="logout()">
+                                Logout
                             </a>
                         </li>
                     </ul>

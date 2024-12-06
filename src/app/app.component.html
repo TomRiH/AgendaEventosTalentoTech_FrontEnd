@@ -1,7 +1,7 @@
-<app-header></app-header>
+<app-header *ngIf="showHeader"></app-header>
 
-<main class="my-5 px-4 py-5">
+<main [ngClass]="{'my-5 px-4 py-5': showHeader}">
     <router-outlet></router-outlet>
 </main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="showHeader"></app-footer>
